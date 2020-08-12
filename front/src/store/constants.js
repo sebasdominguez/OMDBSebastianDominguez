@@ -1,0 +1,8 @@
+export const RECEIVE_MOVIES = 'RECEIVE_MOVIES';
+export const RECEIVE_MOVIE = 'RECEIVE_MOVIE';
+export const REGISTER_USER = 'REGISTER_USER';
+export const LOGIN_USER = 'LOGIN_USER';
+export const RECEIVE_USER_FAVS = 'RECEIVE_USER_FAVS';
+export const ADD_USER_FAVS = 'ADD_USER_FAVS';
+export const DELETE_USER_FAV = 'DELETE_USER_FAV';
+

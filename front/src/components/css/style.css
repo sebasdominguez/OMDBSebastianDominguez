@@ -1,0 +1,23 @@
+.c {
+  position: absolute;
+  max-width: 50px;
+  max-height: 50px;
+  margin-bottom: 40px;
+  width: 50ch;
+  height: 50ch;
+  cursor: pointer;
+  will-change: transform, opacity;
+}
+
+.front,
+.back {
+  background-size: cover;
+}
+/*
+.back {
+  background-image: url(../img/postFav.png);
+}
+
+.back {
+  background-image: url(../img/preFav.png);
+}*/
