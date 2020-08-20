@@ -1,8 +1,17 @@
-import React  from 'react';
+import React, {useState, useEffect}  from 'react';
 import { connect } from "react-redux";
 import {withRouter} from "react-router-dom"
 import Login from '../components/Login';
 import { logUSer } from '../store/actions/login';
+import history from "../utils/history"
+
+
+const mapStateToProps = function(state) {
+  return {
+    user: state.login.userLog,
+    error: state.login.error,
+  };
+};
 
 const mapDispatchToProps = function(dispatch) {
   return {
@@ -10,42 +19,45 @@ const mapDispatchToProps = function(dispatch) {
   };
 };
 
-class LoginContainer extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-        email: '',
-        password:''
-    },
-    this.handleMailInput = this.handleMailInput.bind(this);
-    this.handlePasswordInput = this.handlePasswordInput.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
+
+const LoginContainer = ({loggedUser, user, error}) => {
+
+  const [mail, setMail] = useState('')
+  const [pass, setPass] = useState('')
+  const [errorLog, setErrorLog] = useState(false)
+
+  const handleMailInput = (mail) => {
+    setMail(mail)
   }
 
-  handleMailInput(mail) {
-    this.setState({email: mail});
+  const handlePasswordInput = (pass) => {
+    setPass(pass)
   }
 
-  handlePasswordInput(pass) {
-    this.setState({password: pass});
-  }
-
-  handleSubmit(event) {
+  const handleSubmit = (event) => {
     event.preventDefault();
-    this.props.loggedUser(this.state);
-    this.props.history.push("/");
+    loggedUser({email: mail, password: pass})
   }
 
-  render() {
-    return <Login
-      setMail={this.handleMailInput}
-      setPass={this.handlePasswordInput}
-      mailQuery={this.state.email}
-      passQuery={this.state.password}
-      handleSubmit={this.handleSubmit}
+  useEffect(() => {
+      if(user && user.id) history.push("/")
+    }, [user])
+
+  useEffect(() => {
+      if(error==true) {
+        setErrorLog(true)
+      } else (setErrorLog(false))
+    }, [error])
+
+  return <Login
+      setMail={handleMailInput}
+      setPass={handlePasswordInput}
+      mailQuery={mail}
+      passQuery={pass}
+      handleSubmit={handleSubmit}
+      errorLog={errorLog}
     />
   }
-}
 
-export default withRouter(connect(null, mapDispatchToProps)(LoginContainer))
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(LoginContainer))
 

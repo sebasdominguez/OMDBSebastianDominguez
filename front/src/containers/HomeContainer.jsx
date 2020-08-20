@@ -14,9 +14,9 @@ const mapStateToProps = function(state) {
 class MovieContainer extends React.Component {
   render() {
     return (
-      <Home user={this.props.user}/>
-    )
-  }
+     	<Home user={this.props.user}/>
+  		)
+   	}
 }
 
 export default withRouter(connect(mapStateToProps)(MovieContainer))

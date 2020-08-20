@@ -1,5 +1,7 @@
 # OMDB
 
+* ATENCIÓN: Desarrollo en construcción. Ya se encuentra funcional, pero faltan algunos features y todo el trabajo de estilos-animaciones.
+
 APP que utiliza la API de [OMDB](http://www.omdbapi.com/). 
 Un servicio RESTFULL de películas al estilo [IMDB](http://www.imdb.com/), pero open source!
 

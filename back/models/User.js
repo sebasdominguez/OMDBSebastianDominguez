@@ -12,6 +12,10 @@ const User = db.define('users', {
     type: S.STRING,
     allowNull: false,
   },
+  name: {
+    type: S.STRING,
+    allowNull: false,
+  },
   salt: {
     type: S.STRING, // a salt is random data that is used as an additional input to a one-way function that "hashes" data
   }

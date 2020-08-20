@@ -7,9 +7,9 @@ const receiveMovies = movies => ({
   movies,
 }); 
 
-const receiveMovie = movie => ({
+const receiveMovie = (obj) => ({
   type: RECEIVE_MOVIE,
-  movie,
+  obj,
 }); 
 
 export const fetchMovies = (name) => dispatch => {
@@ -18,11 +18,23 @@ export const fetchMovies = (name) => dispatch => {
     .then(movies => dispatch(receiveMovies(movies.Search)));
 }
 
-export const fetchPeliByTitle = (title) => dispatch => {
+export const fetchPeliByTitle = (title, userId) => dispatch => {
  axios.get(`https://www.omdbapi.com/?${apiKey}&t=${title}`)
-	.then(res => res.data)
-    .then(movie => {
-    	dispatch(receiveMovie(movie))
-    		}	
-    	);
+	.then(res => {
+      const theMovie = res.data;
+      const movieId = res.data.imdbID;
+      const user = userId;
+      if (userId){
+        axios.get(`/api/users/${user}/favorite/${movieId}`)
+        .then(res => {
+          if (res.data == 'alreadyAdded') {var boolean = true} 
+          else { var boolean= false};
+          const obj = {data: theMovie, fav: boolean}
+          dispatch(receiveMovie(obj))
+        })
+      } else {
+        const obj = {data: theMovie, fav: true};
+        dispatch(receiveMovie(obj))
+      }
+    })
 }

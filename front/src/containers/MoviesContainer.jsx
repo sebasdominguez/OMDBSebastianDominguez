@@ -1,28 +1,30 @@
 import React from 'react';
 import { connect } from "react-redux";
+import { Redirect } from "react-router-dom";
 import { fetchPeliByTitle } from '../store/actions/movies';
 import Movies from '../components/Movies';
 
 const mapStateToProps = function(state) {
   return {
     moviesList: state.movies.list,
+    user: state.login.userLog.id
   };
 };
 
 const mapDispatchToProps = function(dispatch) {
   return {
-    fetchMovie: (title) => dispatch(fetchPeliByTitle(title)),
-  };
-};
+    fetchMovie: (title, user) => dispatch(fetchPeliByTitle(title, user))
+    }
+}
 
 
 class MoviesContainer extends React.Component {
   
   render () {
     return  (
-          <Movies byTitle={this.props.fetchMovie} movies={this.props.moviesList} />
-          );
-  }
+          <Movies byTitle={this.props.fetchMovie} movies={this.props.moviesList} user={this.props.user} />
+        )
+    }
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(MoviesContainer);

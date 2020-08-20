@@ -3,7 +3,7 @@ import { Form, FormControl, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
 export default function (props) {
-  const { setMail, setPass, handleSubmit, mailQuery, passQuery } = props;
+  const { setMail, setName, setPass, handleSubmit, mailQuery, passQuery, nameQuery } = props;
 
   const movieMailChange = e => {
     setMail(e.target.value);
@@ -11,6 +11,10 @@ export default function (props) {
 
   const moviePassChange = e => {
     setPass(e.target.value);
+  };
+
+  const movieNameChange = e => {
+    setName(e.target.value);
   };
 
   return (
@@ -21,8 +25,9 @@ export default function (props) {
           <h4>Create Your Account in One Step</h4>
           <div>
             <Form onSubmit={handleSubmit}>
-                <FormControl type="text" value={mailQuery} placeholder="Your Mail" onChange={movieMailChange} className="mr-sm-2" />
-                <FormControl type="text" value={passQuery} placeholder="Your Password" onChange={moviePassChange} className="mr-sm-2" />
+                <FormControl type="email" value={mailQuery} placeholder="Your Mail" onChange={movieMailChange} className="mr-sm-2" />
+                <FormControl type="text" value={nameQuery} placeholder="Your Name" onChange={movieNameChange} className="mr-sm-2" />
+                <FormControl type="password" value={passQuery} placeholder="Your Password" onChange={moviePassChange} className="mr-sm-2" />
                 <Button type="submit" variant="outline-success">Register</Button>
             </Form>
           </div> 

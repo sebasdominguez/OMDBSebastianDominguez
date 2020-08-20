@@ -19,29 +19,21 @@ const deleteFav = deleteFav => ({
 export const agregarFavs = (movieYuser) => dispatch => {
     axios.post('/api/favs/add', movieYuser)
         .then(res => {
-            return res.data;
-        })
-        .then(movieOk => {
-            dispatch(addFavs(movieOk))
-        })
-};
+            dispatch(addFavs(res.data))
+            alert("Movie added to your favs")
+            }
+)};
 
 export const listFavs = (userId) => dispatch => {
     axios.get(`/api/users/${userId}/favorites`)
-        .then(res => {
-            return res.data;
-        })
-        .then(favs => {
-            dispatch(receiveFavs(favs))
-        })
-};
+        .then(res => dispatch(receiveFavs(res.data))
+)};
 
 export const removeFav = (objRemoveFav) => dispatch => {
-    console.log("entre al action de Remove")
-    console.log("objRemoveFav  :", objRemoveFav)
     axios.post('/api/favs/remove', objRemoveFav)
         .then(res => res.data)
         .then(movies => {
             dispatch(receiveFavs(movies));
+            alert("Movie removed from your favs")
         });
 }

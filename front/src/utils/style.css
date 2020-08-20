@@ -7,6 +7,10 @@ body {
     padding-bottom: 56px;
 }
 
+.tdNoBorder {
+    border: 0px !important;
+}
+
 #main {
     padding-left: 0;
 }
@@ -134,4 +138,23 @@ footer .progress-bar {
 /* oculta las listas anidadas */
 #favs input:checked~ul {
     display: block;
+}
+
+.listFav {
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+}
+
+.addFav{
+    background-color: #FE0057 !important;
+}
+
+.c {
+    max-width: 100% !important;
+    max-height: 100% !important;
+    width: 100% !important;
+    height: 100% !important;
+    margin-top: 70px !important;
 }

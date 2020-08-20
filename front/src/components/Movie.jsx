@@ -6,29 +6,37 @@ import { render } from 'react-dom';
 import "./css/style.css"
 
 
-export default ({movie, addToFavs, user}) => {
+export default ({movie, addToFavs, fav, user}) => {
+  
   function Card() {
+
       const [flipped, set] = useState(false)
+      const [added, setAdded] = useState(false)
       const { transform, opacity } = useSpring({
         opacity: flipped ? 1 : 0,
         transform: `perspective(600px) rotateX(${flipped ? 180 : 0}deg)`,
         config: { mass: 5, tension: 500, friction: 80 }
       })
-      return (
-        <div className="col-4 mb-5" onClick={() => 
-            {
-            set(state => !state);
-            let toDispatch ={movieId:movie.imdbID , titleMovie:movie.Title, userId:user}
-            addToFavs(toDispatch)
-            }
-          }>
-          <a.div className="c back" style={{ opacity: opacity.interpolate(o => 1 - o), transform }}><button >Add to Favs</button></a.div>
-          <a.div className="c front" style={{ opacity, transform: transform.interpolate(t => `${t} rotateX(180deg)`) }} ><button >Done!</button> </a.div>
-        </div>
-      )
-  
-  }
 
+      { return added == true ?
+          null
+          :
+          fav == true? 
+            null
+            :
+            (<div className="col-12 listFav" onClick={() => 
+              {
+              set(state => !state);
+              let toDispatch ={movieId:movie.imdbID , titleMovie:movie.Title, userId:user.id}
+              addToFavs(toDispatch)
+              setAdded(true)
+              }
+            }>
+            <a.div className="c back" style={{ opacity: opacity.interpolate(o => 1 - o), transform }}><button className="addFav">Add to Favs</button></a.div>
+            <a.div className="c front" style={{ opacity, transform: transform.interpolate(t => `${t} rotateX(180deg)`) }} ><button className="okFav">Done!</button> </a.div>
+            </div>)
+      }
+  }
 
   return (
     <div className="row justify-content-center align-items-center">
@@ -96,7 +104,7 @@ export default ({movie, addToFavs, user}) => {
               </tbody>
           </Table>
         </div>
-        { user ? <Card /> : null }
+        { user.email ? <Card /> : null }
       </div>
     )
 }

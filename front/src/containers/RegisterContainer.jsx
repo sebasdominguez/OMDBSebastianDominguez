@@ -15,8 +15,10 @@ class RegisterContainer extends React.Component {
     super();
     this.state = {
         email: '',
-        password:''
+        password:'',
+        name: ''
     },
+    this.handleNameInput = this.handleNameInput.bind(this);
     this.handleMailInput = this.handleMailInput.bind(this);
     this.handlePasswordInput = this.handlePasswordInput.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -30,6 +32,10 @@ class RegisterContainer extends React.Component {
     this.setState({password:pass});
   }
 
+  handleNameInput(name) {
+    this.setState({name:name});
+  }
+
   handleSubmit(event) {
     event.preventDefault();
       this.props.createUser(this.state);
@@ -38,8 +44,10 @@ class RegisterContainer extends React.Component {
   render() {
     return <Register
       setMail={this.handleMailInput}
+      setName={this.handleNameInput}
       setPass={this.handlePasswordInput}
       mailQuery={this.state.email}
+      nameQuery={this.state.name}
       passQuery={this.state.password}
       handleSubmit={this.handleSubmit}
     />

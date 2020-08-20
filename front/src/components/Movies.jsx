@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Table } from 'react-bootstrap';
 
-export default ({ movies, byTitle}) => {
+export default ({ movies, byTitle, user}) => {
 
     return (
         <div className="mt-5">
@@ -19,7 +19,7 @@ export default ({ movies, byTitle}) => {
           { movies && movies.map( movie => 
             <tr key={movie.Title}>
               <td> 
-                <Link className="thumbnail" to={`/movies/${movie.Title}`} onClick={() => byTitle(movie.Title)}>{movie.Title}
+                <Link className="thumbnail" to={`/movies/${movie.Title}`} onClick={() => byTitle(movie.Title, user)}>{movie.Title}
                 </Link>
               </td>
               <td>{movie.Year}</td>

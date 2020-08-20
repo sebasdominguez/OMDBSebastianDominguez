@@ -1,28 +1,34 @@
-import axios from 'axios';
-import { LOGIN_USER } from '../constants';
-import {withRouter} from "react-router-dom"
+  import axios from 'axios';
+import { LOGIN_USER, LOGIN_ERROR } from '../constants';
 
 const login = userLogged => ({
   type: LOGIN_USER,
   userLogged,
 }); 
 
+const loginError = (boolean) => ({
+  type: LOGIN_ERROR,
+  boolean
+}); 
+
 export const logUSer = (user) => dispatch => {
   axios.post('/api/login', user)
     .then(res => {
-      return res.data;
-      })
-    .then(userOk => {
-      dispatch(login(userOk))
-  })
-};
+        dispatch(login(res.data))
+        dispatch(loginError(false))
+    })
+    .catch(() => dispatch(loginError(true)))
+}
 
-export const logOut = (user) => dispatch => {
-  axios.post('/api/logout', user)
-    .then(res => {
-      return res.data;
-      })
-    .then(userOk => {
-      dispatch(login(userOk))
-  })
+export const logOut = () => dispatch => {
+  axios.get('/api/logout')
+    .then(user => {
+      dispatch(login({}))
+    })
+    .catch((err) => console.log("logut err ",err));
+}
+
+export const persistencia = () => (dispatch) => {
+  axios.get('/api/persist')
+  .then((res)=> dispatch(login(res.data)))
 };

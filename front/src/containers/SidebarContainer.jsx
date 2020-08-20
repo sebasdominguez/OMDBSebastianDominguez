@@ -14,13 +14,8 @@ const mapStateToProps = function(state) {
 
 const mapDispatchToProps = function(dispatch) {
   return {
-    logout: (user) => { 
-                        dispatch(logOut(user))
-
-                      },
-    toFavs: (user) => {
-                        dispatch(listFavs(user))
-                      }
+    logout: () => dispatch(logOut()),
+    toFavs: (user) => dispatch(listFavs(user))
   };
 };
 
