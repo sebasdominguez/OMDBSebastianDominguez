@@ -2,179 +2,170 @@
 <html lang="en">
 
 <head>
-    <title>OMDB SD</title>
+    <title>MovieFinder</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-<!--     <link href="./src/utils/style.css" rel="stylesheet" /> -->
-    <!--  <link rel="icon" href="/favicon.ico?v=juke" /> -->
 </head>
 
-<body>
-    <style>
+    <body>
+
+        <style>
+                    
+            * {
+                box-sizing: border-box;
+            }
+
+            body {
+                background: #B5B0E8;
+                padding-bottom: 56px;
+            }
+
+            #main {
+                padding-left: 0;
+            }
+
+            h4{
+                font-size: 1rem;
+            }
+
+            .navbar-center
+            {
+
+                width: 100%;
+                text-align: center;
+            }
+
+            .sidebar {
+                position: fixed;
+                left: 0;
+                top: 55px;
+                padding: 0 !important;
+                background: #303030;
+                height: calc(100vh - 56px);
+                width: inherit;
+                overflow-y: auto;
+                border-right: 2px solid #555;
+            }
+
+            .sidebar::-webkit-scrollbar {
+                width: 10px;
+                background-color: #222;
+            }
+
+            .sidebar::-webkit-scrollbar-thumb {
+                background-color: black;
+                -webkit-border-radius: 1ex;
+            }
+
+
+            .sidebar section>* {
+                padding: 15px 15px;
+            }
+
+            .sidebar .menu-item {
+                padding-left: 10px;
+            }
+
+            .sidebar .menu-item a {
+                transition: border-left, 0.2s;
+                padding-left: 15px;
+                color: #c8c8c8;
+            }
+
+            .sidebar .menu-item a:hover {
+                color: white;
+            }
+
+            .sidebar .menu-item a.active,
+            .sidebar .menu-item a:hover {
+                border-left: 3px solid #00bc8c;
+            }
+
+
+            footer {
+                position: fixed;
+                background-color: #555;
+                bottom: 0;
+                left: 0;
+                width: 100%;
+                height: 56px;
+                border-top: 1px solid #222;
+                border-bottom: 1px solid #222;
+                padding: 8px;
+            }
+
+            footer .bar {
+                overflow: hidden;
+                padding: 9px;
+            }
+
+            footer .progress {
+                cursor: pointer;
+            }
+
+            footer .progress-bar {
+                transition: none !important;
+            }
+
+            .album img {
+                height: 300px;
+            }
+
+
+            /*FAVORITOS*/
+
+            #favs * {
+                list-style: none;
+            }
+
+            #favs li {
+                line-height: 180%;
+            }
+
+            #favs li a {
+                color: #222;
+                text-decoration: none;
+            }
+
+            #favs li a:before {
+                content: "\025b8";
+                color: #ddd;
+                margin-right: 4px;
+            }
+
+            #favs input[name="list"] {
+                position: absolute;
+                left: -1000em;
+            }
+
+            #favs label:before {
+                content: "\025b8";
+                margin-right: 4px;
+            }
+
+            #favs input:checked~label:before {
+                content: "\025be";
+            }
+
+            #favs .interior {
+                display: none;
+            }
+
+            /* oculta las listas anidadas */
+            #favs input:checked~ul {
+                display: block;
+            }
+        </style>
+        <div id="app"></div>
+
+        <script src="/bundle.js"></script>
+
+        <!--BOOTSTAP JS -->
+        <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
         
-* {
-    box-sizing: border-box;
-}
-
-body {
-    background: #B5B0E8;
-    padding-bottom: 56px;
-}
-
-#main {
-    padding-left: 0;
-}
-
-h4{
-    font-size: 1rem;
-}
-
-.navbar-center
-{
-
-    width: 100%;
-    text-align: center;
-}
-
-.sidebar {
-    position: fixed;
-    left: 0;
-    top: 55px;
-    padding: 0 !important;
-    background: #303030;
-    height: calc(100vh - 56px);
-    width: inherit;
-    overflow-y: auto;
-    border-right: 2px solid #555;
-}
-
-.sidebar::-webkit-scrollbar {
-    width: 10px;
-    background-color: #222;
-}
-
-.sidebar::-webkit-scrollbar-thumb {
-    background-color: black;
-    -webkit-border-radius: 1ex;
-}
-
-
-.sidebar section>* {
-    padding: 15px 15px;
-}
-
-.sidebar .menu-item {
-    padding-left: 10px;
-}
-
-.sidebar .menu-item a {
-    transition: border-left, 0.2s;
-    padding-left: 15px;
-    color: #c8c8c8;
-}
-
-.sidebar .menu-item a:hover {
-    color: white;
-}
-
-.sidebar .menu-item a.active,
-.sidebar .menu-item a:hover {
-    border-left: 3px solid #00bc8c;
-}
-
-
-footer {
-    position: fixed;
-    background-color: #555;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 56px;
-    border-top: 1px solid #222;
-    border-bottom: 1px solid #222;
-    padding: 8px;
-}
-
-footer .bar {
-    overflow: hidden;
-    padding: 9px;
-}
-
-footer .progress {
-    cursor: pointer;
-}
-
-footer .progress-bar {
-    transition: none !important;
-}
-
-.album img {
-    height: 300px;
-}
-
-
-/*FAVORITOS*/
-
-#favs * {
-    list-style: none;
-}
-
-#favs li {
-    line-height: 180%;
-}
-
-#favs li a {
-    color: #222;
-    text-decoration: none;
-}
-
-#favs li a:before {
-    content: "\025b8";
-    color: #ddd;
-    margin-right: 4px;
-}
-
-#favs input[name="list"] {
-    position: absolute;
-    left: -1000em;
-}
-
-#favs label:before {
-    content: "\025b8";
-    margin-right: 4px;
-}
-
-#favs input:checked~label:before {
-    content: "\025be";
-}
-
-#favs .interior {
-    display: none;
-}
-
-/* oculta las listas anidadas */
-#favs input:checked~ul {
-    display: block;
-}
-
-    </style>
-    <div id="app">
-      
-    </div>
-
-    <!--BOOTSTAP JS -->
-    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-
-    <script src="/bundle.js"></script>
-    <!--
-    <div id="main" class="container-fluid">
-
-    </div>
-  -->
-</body>
+    </body>
 
 </html>
