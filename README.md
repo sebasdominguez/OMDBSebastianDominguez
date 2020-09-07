@@ -25,12 +25,12 @@ Con la App podemos:
 
 * [React-Redux](https://github.com/reactjs/react-redux)
 
-* [Sequelize]
+* Sequelize
 
-* [Postman]
+* Postman
 
-* [NodeJs]
+* NodeJs
 
-* [React-Bootstrap]
+* React-Bootstrap
 
-* [Firebase]
+* Firebase
