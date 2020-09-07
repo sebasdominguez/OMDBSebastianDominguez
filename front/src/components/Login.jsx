@@ -1,32 +1,26 @@
 import React from 'react';
-import { Form, FormControl, Button } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import { Form, FormControl, Button, Modal } from 'react-bootstrap';
 
-export default function (props) {
-  const { setMail, setPass, handleSubmit, mailQuery, passQuery, errorLog } = props;
-
-  const movieMailChange = e => {
-    setMail(e.target.value);
-  };
-
-  const moviePassChange = e => {
-    setPass(e.target.value);
-  };
+export default ({handleMailInput, handlePasswordInput, handleSubmit, mailQuery, passQuery, errorLog, showModal, closeModal}) => {
 
   return (
-    <div className="row mt-5">
-      <div className="col-12 pt-5 text-center">
-          <Link to="/" ><h3>SD.OMDB - Your Movie Finder</h3></Link>
-          <h4>Login</h4>
-          <div>
-            <Form onSubmit={handleSubmit}>
-                <FormControl type="text" value={mailQuery} placeholder="Your Mail" onChange={movieMailChange} className="mr-sm-2" />
-                <FormControl type="password" value={passQuery} placeholder="Your Password" onChange={moviePassChange} className="mr-sm-2" />
-                {errorLog==true ? <Button type="submit" variant="danger">Try Again!</Button> : <Button type="submit" variant="success">Go!</Button> }
-            </Form>
-          </div> 
-      </div>
-    </div>
+    <Modal
+    show={showModal}
+    onHide={closeModal}
+    keyboard={false}
+    size="lg"
+    aria-labelledby="contained-modal-title-vcenter"
+    centered
+    className="modalLogin col-12 text-center"
+    >
+      <h4 className="login mt-3">Login</h4>
+      <Form onSubmit={handleSubmit} className="mb-3 mr-2 ml-2 justify-content-center">
+        <FormControl size="md" type="text" value={mailQuery} placeholder="Your Mail" onChange={handleMailInput} className="mr-sm-2 mt-1" required={true} />
+        <FormControl size="md" type="password" value={passQuery} placeholder="Your Password" onChange={handlePasswordInput} className="mr-sm-2 mt-1 mb-1" required={true} />
+        {errorLog==true ? <Button type="submit" variant="danger">Try Again!</Button> : <Button type="submit" variant="dark">Go!</Button> }
+      </Form>
+    </Modal>
+
   );
 }
 

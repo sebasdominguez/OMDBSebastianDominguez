@@ -1,11 +1,12 @@
-export const RECEIVE_MOVIES = 'RECEIVE_MOVIES';
-export const RECEIVE_MOVIE = 'RECEIVE_MOVIE';
-export const REGISTER_USER = 'REGISTER_USER';
-export const LOGIN_USER = 'LOGIN_USER';
-export const LOGIN_ERROR = 'LOGIN_ERROR';
-export const RECEIVE_USER_FAVS = 'RECEIVE_USER_FAVS';
-export const ADD_USER_FAVS = 'ADD_USER_FAVS';
-export const FETCH_USERS = 'FETCH_USERS';
-export const SET_USER_SELECTED = 'SET_USER_SELECTED';
-export const DELETE_USER_FAV = 'DELETE_USER_FAV';
-
+export const RECEIVE_MOVIES = "RECEIVE_MOVIES";
+export const RECEIVE_MOVIE = "RECEIVE_MOVIE";
+export const MOVIES_HOME = "MOVIES_HOME";
+export const LOGIN_USER = "LOGIN_USER";
+export const LOGIN_ERROR = "LOGIN_ERROR";
+export const RECEIVE_USER_FAVS = "RECEIVE_USER_FAVS";
+export const ADD_USER_FAVS = "ADD_USER_FAVS";
+export const FETCH_USERS = "FETCH_USERS";
+export const SET_USER_SELECTED = "SET_USER_SELECTED";
+export const DELETE_USER_FAV = "DELETE_USER_FAV";
+export const MODAL_LOGIN = "MODAL_LOGIN";
+export const MODAL_REGISTER = "MODAL_REGISTER";

@@ -1,59 +1,96 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
-import { withRouter } from "react-router-dom"
-import Finder from '../components/Finder';
-import { fetchMovies } from '../store/actions/movies';
-import { fetchUsers } from '../store/actions/users';
-import history from "../utils/history"
+import { withRouter } from "react-router-dom";
+import Finder from "../components/Finder";
+import { fetchMovies } from "../store/actions/movies";
+import { setModalStatus } from "../store/actions/modal";
+import { listFavs } from '../store/actions/favs';
+import { logOut } from "../store/actions/login";
+import history from "../utils/history";
 
-const mapStateToProps = function(state) {
+const mapStateToProps = function (state) {
   return {
-    user: state.login.userLog
-  }
-};
-
-const mapDispatchToProps = function(dispatch) {
-  return {
-    fetchPelis: (name) => dispatch(fetchMovies(name)),
-    findUsers: (user) => dispatch(fetchUsers(user))
+    user: state.login.userLog,
   };
 };
 
-const FinderContainer = ({fetchPelis, findUsers, history, user}) => {
+const mapDispatchToProps = function (dispatch) {
+  return {
+    fetchPelis: (name) => dispatch(fetchMovies(name)),
+    setModal: (boolean, type) => dispatch(setModalStatus(boolean, type)),
+    logout: () => dispatch(logOut()),
+    toFavs: (user) => dispatch(listFavs(user)),
+  };
+};
 
-    const [movieQuery, setMovieQuery] = useState('')
-    const [userQuery, setUserQuery] = useState('')
-    //const [users, setUsers] = useState({})
-    const [path, setPath] = useState('')
+const FinderContainer = ({
+  fetchPelis,
+  history,
+  user,
+  setModal,
+  logout,
+  toFavs
+}) => {
+  const [movieQuery, setMovieQuery] = useState("");
+  const [path, setPath] = useState("");
+  const [showModal, setShowModal] = useState(false);
 
-    useEffect(() => {
-        if(history.location.pathname == '/favs') setPath('/favs');
-        if(history.location.pathname == '/users') setPath('/users');
-    }, [history.location])
+  const handleMoviesInput = (event) => {
+    setMovieQuery(event.target.value);
+  };
 
-    const handleMoviesInput = (event) => {
-        setMovieQuery(event.target.value);
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    if (movieQuery) {
+      fetchPelis(movieQuery);
+      setModal(false, "movies")
+      history.push("/movies");
     }
+  };
 
-    const handleChangeUsers = (event) => {
-        setUserQuery(event.target.value)
-        findUsers({name: event.target.value});
-    }
+  const logOut = () => {
+    logout()
+  };
 
-    const handleSubmit = (event) => {
-        event.preventDefault();
-        if (movieQuery) {
-          fetchPelis(movieQuery);
-          history.push("/movies");
-        }
-    }
+  const toggleModal = () => {
+    setShowModal(!showModal);
+  };
 
-    const handleSubmitUser = (event) => {
-        event.preventDefault();
-        findUsers(event.target.value);
-    }
+  const modalUserOpen = () => {
+    history.push('/access')
+  };
 
-    return  <Finder user={user} handleUsers={handleChangeUsers} handleMoviesInput={handleMoviesInput} movieQuery={movieQuery} userQuery={userQuery} handleSubmit={handleSubmit} handleSubmitUser={handleSubmitUser} path={path}/>
-}
+  const toUsers = () => {
+    history.push('/users')
+  }
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(FinderContainer))
+  const linkFavs = () => {
+    toFavs(user.id)
+    history.push('/favs')
+  }
+
+  useEffect(() => {
+    if (history.location.pathname == "/favs") setPath("/favs");
+    if (history.location.pathname == "/users") setPath("/users");
+  }, [history.location]);
+  
+  return (
+    <Finder
+      user={user}
+      handleMoviesInput={handleMoviesInput}
+      movieQuery={movieQuery}
+      handleSubmit={handleSubmit}
+      path={path}
+      toggleModal={toggleModal}
+      showModal={showModal}
+      modalUserOpen={modalUserOpen}
+      logOut={logOut}
+      toUsers={toUsers}
+      linkFavs={linkFavs}
+    />
+  );
+};
+
+export default withRouter(
+  connect(mapStateToProps, mapDispatchToProps)(FinderContainer)
+);

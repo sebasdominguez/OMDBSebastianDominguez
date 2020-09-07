@@ -1,6 +1,4 @@
-# OMDB
-
-* ATENCIÓN: Desarrollo en construcción. Ya se encuentra funcional, pero faltan algunos features y todo el trabajo de estilos-animaciones.
+# SD MOVIE FINDER
 
 APP que utiliza la API de [OMDB](http://www.omdbapi.com/). 
 Un servicio RESTFULL de películas al estilo [IMDB](http://www.imdb.com/), pero open source!
@@ -17,6 +15,9 @@ Con la App podemos:
 * Poder ver todos los detalles de una película en particular.
 * Crear Usuarios.
 * Logearse con un usuario.
+* Agregar Series y Películas a Favoritos
+* Buscar otros usuarios
+
 
 ## Techs:
 
@@ -28,4 +29,8 @@ Con la App podemos:
 
 * [Postman]
 
-* [Node]
+* [NodeJs]
+
+* [React-Bootstrap]
+
+* [Firebase]

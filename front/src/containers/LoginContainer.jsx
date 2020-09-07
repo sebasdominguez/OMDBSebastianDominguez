@@ -3,45 +3,34 @@ import { connect } from "react-redux";
 import {withRouter} from "react-router-dom"
 import Login from '../components/Login';
 import { logUSer } from '../store/actions/login';
-import history from "../utils/history"
-
+import { setModalStatus } from "../store/actions/modal";
 
 const mapStateToProps = function(state) {
   return {
     user: state.login.userLog,
     error: state.login.error,
+    loginAsked: state.modal.login
   };
 };
 
 const mapDispatchToProps = function(dispatch) {
   return {
-    loggedUser: (user) => dispatch(logUSer(user))
+    loggedUser: (user) => dispatch(logUSer(user)),
+    setModal: (boolean, type) => dispatch(setModalStatus(boolean, type)),
   };
 };
 
 
-const LoginContainer = ({loggedUser, user, error}) => {
+const LoginContainer = ({loggedUser, user, error, loginAsked, setModal}) => {
 
   const [mail, setMail] = useState('')
   const [pass, setPass] = useState('')
   const [errorLog, setErrorLog] = useState(false)
-
-  const handleMailInput = (mail) => {
-    setMail(mail)
-  }
-
-  const handlePasswordInput = (pass) => {
-    setPass(pass)
-  }
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    loggedUser({email: mail, password: pass})
-  }
+  const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
-      if(user && user.id) history.push("/")
-    }, [user])
+    setShowModal(loginAsked);
+  }, [loginAsked]);
 
   useEffect(() => {
       if(error==true) {
@@ -49,13 +38,32 @@ const LoginContainer = ({loggedUser, user, error}) => {
       } else (setErrorLog(false))
     }, [error])
 
+  const handleMailInput = (event) => {
+    setMail(event.target.value)
+  }
+
+  const handlePasswordInput = (event) => {
+    setPass(event.target.value)
+  }
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    loggedUser({email: mail, password: pass})
+  }
+
+  const closeModal = () => {
+    setModal(false, "login")
+  };
+
   return <Login
-      setMail={handleMailInput}
-      setPass={handlePasswordInput}
+      handleMailInput={handleMailInput}
+      handlePasswordInput={handlePasswordInput}
       mailQuery={mail}
       passQuery={pass}
       handleSubmit={handleSubmit}
       errorLog={errorLog}
+      showModal={showModal}
+      closeModal={closeModal}
     />
   }
 

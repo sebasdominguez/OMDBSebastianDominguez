@@ -17,7 +17,6 @@ export const fetchUsers = (name) => dispatch => {
 }
 
 export const findOneUser = (data) => dispatch => {
-	console.log("data del user selected", data)
 	var user = new Object;
 	user.name= data.name;
 	user.email= data.email;

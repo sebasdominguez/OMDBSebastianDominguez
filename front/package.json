@@ -3,7 +3,9 @@
   "description": "movies info front end site",
   "main": "src/index.js",
   "scripts": {
-    "build": "webpack -w"
+    "build": "webpack -w",
+    "serve": "webpack-dev-server --content-base-build/ --colors --progress",
+    "start": "npm run build && npm run serve"
   },
   "repository": {
     "type": "git",
@@ -16,16 +18,20 @@
   },
   "homepage": "https://github.com/atralice/omdb#readme",
   "dependencies": {
-    "@material-ui/core": "^4.10.2",
     "axios": "^0.19.2",
     "bootstrap": "^4.5.0",
     "file-loader": "^6.0.0",
+    "firebase": "^7.19.1",
+    "moment": "^2.27.0",
     "react": "^16.8.3",
     "react-bootstrap": "^1.0.1",
+    "react-bootstrap-icons": "^1.0.0",
     "react-dom": "^16.8.3",
+    "react-media-hook": "^0.4.7",
+    "react-parallax-card": "^0.5.7",
     "react-redux": "^5.1.1",
     "react-router-dom": "^4.3.1",
-    "react-spring": "^8.0.27",
+    "react-sky": "^1.1.0",
     "redux": "^3.7.2",
     "redux-form": "^8.3.6",
     "redux-thunk": "^2.3.0"
@@ -42,4 +48,3 @@
     "webpack-cli": "^3.2.3"
   }
 }
-

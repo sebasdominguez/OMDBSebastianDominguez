@@ -24,7 +24,7 @@ router.post('/login', passport.authenticate('local') , (req, res, next) => {
     res.send({ id: req.user.id, email: req.user.email, name:req.user.name })
 });
 
-router.get('/logout', (req, res) => {
+router.post('/logout', (req, res) => {
   if (req.isAuthenticated()) {
     req.logout();
     res.redirect("/");

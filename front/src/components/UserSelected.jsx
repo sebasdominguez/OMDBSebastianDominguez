@@ -1,25 +1,23 @@
 import React from 'react';
-//import { Link } from 'react-router-dom';
+import { Card } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
+import moment from 'moment';
 
-export default ({userSelected}) =>  (
-  <div>
-    <div className="row mt-5 justify-content-center">
-      <div className="mt-5 mb-4 mb-3 col-12">
-        <div>
-          <section>
-            <h3 className="text-warning">Your Search: </h3>
-            <div>Name: {userSelected.name}</div>
-            <div>Email: {userSelected.email}</div>
-            <div>Since. {userSelected.since}</div>
-            <div>Favs: </div>
-            <ul>
+export default ({userSelected, byTitle, userLoged}) =>  (
+
+  <Card style={{ width: '18rem' }} className='justify-content-center cardUser text-white' bg='dark'>
+    <Card.Body>
+        <Card.Title>Name: {userSelected.name}</Card.Title>
+        <Card.Text>
+        <div>Email: {userSelected.email}</div>
+        <div>Since: {moment(userSelected.since).format("MMM Do YY")}</div>
+        <div>Favs: </div>
+        <ul>
             {userSelected.favs && userSelected.favs.length ?
               <div>
               {userSelected.favs.map((fav)=>{
                 return (
-                  <li key={fav.id}> 
-                    {fav.title}
-                  </li>
+                  <li key={fav.id}><Link className="thumbnail" to={`/movies/${fav.title}`} onClick={() => byTitle(fav.title, userLoged)}>{fav.title}</Link></li>
                 )
                })
               }
@@ -27,11 +25,9 @@ export default ({userSelected}) =>  (
               :
               <div>Nothing yet...</div>
             }
-            </ul>
-          </section> 
-        </div>
-      </div>
-    </div>
-  </div>
+        </ul>
+        </Card.Text>
+    </Card.Body>
+  </Card>  
 )
 

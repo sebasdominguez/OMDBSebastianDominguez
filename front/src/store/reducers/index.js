@@ -1,15 +1,14 @@
-import { combineReducers } from 'redux';
-import moviesReducer from './moviesReducer';
-import registerReducer from './registerReducer';
-import loginReducer from './loginReducer';
-import favoritesReducer from './favsReducer';
-import usersReducer from './usersReducer';
+import { combineReducers } from "redux";
+import moviesReducer from "./moviesReducer";
+import loginReducer from "./loginReducer";
+import favoritesReducer from "./favsReducer";
+import usersReducer from "./usersReducer";
+import modalReducer from "./modalReducer";
 
 export default combineReducers({
   movies: moviesReducer,
-  register: registerReducer,
   login: loginReducer,
   favorites: favoritesReducer,
-  users: usersReducer
+  users: usersReducer,
+  modal: modalReducer,
 });
-

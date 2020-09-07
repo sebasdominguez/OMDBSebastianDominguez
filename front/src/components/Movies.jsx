@@ -1,33 +1,52 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import { Table } from 'react-bootstrap';
+import React from "react";
+import { Link } from "react-router-dom";
+import { Table } from "react-bootstrap";
+import ParallaxCard from "react-parallax-card";
 
-export default ({ movies, byTitle, user}) => {
+export default ({ movies, byTitle, user }) => {
+  return (
+    <div className="row text-center margin0 text-white">
+        <div className="col-12">
+          <div className="col-12 p-4">
+            MOVIES LIST BY YOUR SEARCH:
+          </div>
+          <div className="contMovies ">
+            {movies === undefined ?
+              <div className='mt-5'>There are no matches with your search. Please try another...</div>
+              :
+              movies.map((mov) => (
+              <div key={mov.imdbID}>
+                <Link
+                  className="thumbnail"
+                  to={`/movies/${mov.Title}`}
+                  onClick={() => byTitle(mov.Title, user)}
+                >
+                  <ParallaxCard className="parallax">
+                    <img
+                      src={mov.Poster}
+                      style={{ width: "300px", height: "400px" }}
+                    />
 
-    return (
-        <div className="mt-5">
-      <h3 className="pt-4 text-center text-white">MOVIES LIST BY YOUR SEARCH:</h3>
-      <Table responsive striped hover size="xl" variant="dark">
-        <thead>
-          <tr>
-            <th>Title</th>
-            <th>Year</th>
-            <th>Type</th>
-          </tr>
-        </thead>
-        <tbody>
-          { movies && movies.map( movie => 
-            <tr key={movie.Title}>
-              <td> 
-                <Link className="thumbnail" to={`/movies/${movie.Title}`} onClick={() => byTitle(movie.Title, user)}>{movie.Title}
+                    <div />
+                    <div />
+                    <div />
+
+                    <p
+                      style={{
+                        fontSize: "3rem",
+                        fontWeight: "bold",
+                        padding: "3rem",
+                        lineHeight: "30px",
+                      }}
+                    >
+                      {mov.Title}
+                    </p>
+                  </ParallaxCard>
                 </Link>
-              </td>
-              <td>{movie.Year}</td>
-              <td>{movie.Type}</td>
-            </tr>
-          )}
-        </tbody>
-      </Table>
+              </div>
+            ))}
+          </div>
+        </div>
     </div>
-    )
-}
+  );
+};

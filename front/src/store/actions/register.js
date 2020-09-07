@@ -1,9 +1,11 @@
-import axios from 'axios';
-import { REGISTER_USER } from '../constants';
-import history from "../../utils/history"
+import axios from "axios";
+import history from "../../utils/history";
+import { setModalStatus } from "./modal";
 
-export const newUser = (user) => dispatch => {
-  console.log("USER: ", user)
-  axios.post('/api/users', user)
-    .then(() => history.push('/login'))
+export const newUser = (user) => (dispatch) => {
+  axios.post("/api/users", user)
+  .then(() => {
+    dispatch(setModalStatus(false, "register"))
+    history.push("/")
+  });
 };
