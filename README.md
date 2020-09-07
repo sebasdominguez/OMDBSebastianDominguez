@@ -34,3 +34,14 @@ Con la App podemos:
 * React-Bootstrap
 
 * Firebase
+
+
+### Start Point
+
+* Forkeá y cloná este repo.
+* Abrí 2 pestañas en la Terminal.
+* Sobre 1 de ellas, posicionate sobre el directorio `front` y ejecutá `npm run build`.
+* Con la otra pestaá, posicionado sobre el `back` ejecutá `npm start`
+* Abrí el browser en http://localhost:3000/
+
+

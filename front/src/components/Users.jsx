@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Table, Form, FormControl, Row, Col, Button } from 'react-bootstrap';
 import Sky from 'react-sky';
-import img2 from './img/balde.png';
+import img2 from './img/onePop.png';
 
 export default ({ usersList, findUser, userQuery, handleUsers}) =>  (
     <div className="userFinder margin0 mt-5 justify-content-center">

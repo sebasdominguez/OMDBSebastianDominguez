@@ -248,6 +248,7 @@ body {
   margin: 8px !important;
   background-color: #be43d89e !important;
   cursor: pointer;
+  border: 0px;
 }
 
 .buttonLogout:hover, .buttonLogout:focus, .buttonLogout:active:focus{

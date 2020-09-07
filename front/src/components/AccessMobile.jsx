@@ -1,6 +1,6 @@
 import React from 'react';
 import { Card, Button } from 'react-bootstrap';
-import img2 from './img/balde.png';
+import img2 from './img/onePop.png';
 import Sky from 'react-sky';
 
 export default ({ modal }) => {

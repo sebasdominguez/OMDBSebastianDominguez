@@ -3,7 +3,7 @@ import { Table } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { Button } from 'react-bootstrap';
 import Sky from 'react-sky';
-import img2 from './img/balde.png';
+import img2 from './img/onePop.png';
 import '../utils/style.css'
 
 export default ({ user, favs, byTitle, deleteFav }) => (
