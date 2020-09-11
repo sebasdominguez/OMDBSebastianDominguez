@@ -5,7 +5,6 @@ import Favs from '../components/Favs';
 import { fetchPeliByTitle } from '../store/actions/movies';
 import { removeFav } from '../store/actions/favs';
 
-
 const mapStateToProps = function(state) {
     return {
         user: state.login.userLog,

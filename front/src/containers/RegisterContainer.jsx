@@ -39,7 +39,7 @@ class RegisterContainer extends React.Component {
     this.setState({showModal : this.props.loginAsked})
   }
 
-  componentDidUpdate(prevProps) {
+    componentDidUpdate(prevProps) {
     if (prevProps.loginAsked !== this.props.loginAsked) {
       const status = this.props.loginAsked;
       this.setState({showModal : status})

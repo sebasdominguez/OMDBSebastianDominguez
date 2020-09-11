@@ -21,12 +21,15 @@ export const agregarFavs = (movieYuser) => dispatch => {
         .then(res => {
             dispatch(addFavs(res.data))
             alert("Movie added to your favs")
-            }
-)};
+        })
+        .catch((err)=>console.log(err))
+        
+};
 
 export const listFavs = (userId) => dispatch => {
     axios.get(`/api/users/${userId}/favorites`)
         .then(res => dispatch(receiveFavs(res.data))
+        .catch((err)=>console.log(err))
 )};
 
 export const removeFav = (objRemoveFav) => dispatch => {
@@ -35,5 +38,6 @@ export const removeFav = (objRemoveFav) => dispatch => {
         .then(movies => {
             dispatch(receiveFavs(movies));
             alert("Movie removed from your favs")
-        });
+        })
+        .catch((err)=>console.log(err))
 }

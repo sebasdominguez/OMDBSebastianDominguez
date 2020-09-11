@@ -21,22 +21,26 @@ export const fetchMoviesHome = () => (dispatch) => {
   axios
     .get(`https://www.omdbapi.com/?${apiKey}&t=batman`)
     .then((res) => res.data)
-    .then((movies) => dispatch(receiveMovies(movies.Search)));
+    .then((movies) => dispatch(receiveMovies(movies.Search)))
+    .catch((err)=>console.log(err))
 };
 
 export const fetchMovies = (name) => (dispatch) => {
   axios
     .get(`https://www.omdbapi.com/?${apiKey}&s=${name}`)
     .then((res) => res.data)
-    .then((movies) => dispatch(receiveMovies(movies.Search)));
+    .then((movies) => dispatch(receiveMovies(movies.Search)))
+    .catch((err)=>console.log(err))
 };
 
 export const fetchPeliByTitle = (title, userId) => (dispatch) => {
-  axios.get(`https://www.omdbapi.com/?${apiKey}&t=${title}`).then((res) => {
+  axios.get(`https://www.omdbapi.com/?${apiKey}&t=${title}`)
+  .then((res) => {
     const theMovie = res.data;
     const movieId = res.data.imdbID;
     if (userId && userId.id) {
-      axios.get(`/api/users/${userId.id}/favorite/${movieId}`).then((res) => {
+      axios.get(`/api/users/${userId.id}/favorite/${movieId}`)
+      .then((res) => {
         if (res.data == "alreadyAdded") {
           var boolean = true;
         } else {
@@ -44,10 +48,12 @@ export const fetchPeliByTitle = (title, userId) => (dispatch) => {
         }
         const obj = { data: theMovie, fav: boolean };
         dispatch(receiveMovie(obj));
-      });
+      })
+      .catch((err)=>console.log(err))
     } else {
       const obj = { data: theMovie, fav: true };
       dispatch(receiveMovie(obj));
     }
-  });
+  })
+  .catch((err)=>console.log(err))
 };

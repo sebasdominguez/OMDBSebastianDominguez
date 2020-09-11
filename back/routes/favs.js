@@ -5,7 +5,7 @@ const path = require("path");
 const { User, Favorite } = require("../models/index");
 router.use(flash());
 
-router.post('/add', (req, res, next) => {
+router.post('/add', (req, res) => {
     User.findByPk(req.body.userId)
         .then((userFound) => {
             const user = userFound;
@@ -26,7 +26,7 @@ router.post('/add', (req, res, next) => {
     }
 )})
 
-router.post('/remove', (req, res, next) => {
+router.post('/remove', (req, res) => {
     Favorite.destroy({
             where: {
                 id: req.body.movie,

@@ -7,5 +7,6 @@ export const newUser = (user) => (dispatch) => {
   .then(() => {
     dispatch(setModalStatus(false, "register"))
     history.push("/")
-  });
+  })
+  .catch((err)=>console.log(err))
 };

@@ -1,8 +1,6 @@
 const S = require('sequelize');
 const crypto = require('crypto'); // The crypto module provides a way of handling encrypted data. | https://www.w3schools.com/nodejs/ref_crypto.asp
-
 const db = require('../config/db');
-
 const User = db.define('users', {
   email: {
     type: S.STRING,
@@ -25,7 +23,6 @@ User.addHook('beforeCreate', (user) => {
   user.salt = crypto.randomBytes(20).toString('hex');
   user.password = user.hashPassword(user.password);
 })
-
 User.prototype.hashPassword = function (password) {
   return crypto.createHmac('sha1', this.salt).update(password).digest('hex');
 }

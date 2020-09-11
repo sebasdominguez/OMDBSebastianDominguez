@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Table, Button } from "react-bootstrap";
 import ParallaxCard from "react-parallax-card";
-import "./css/style.css";
 
 export default ({ movie, fav, user, handleFavs }) => {
 

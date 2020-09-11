@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Route, Redirect, Switch } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 import { connect } from "react-redux";
 import SidebarContainer from "../containers/SidebarContainer";
 import MoviesContainer from "../containers/MoviesContainer";
@@ -14,6 +14,21 @@ import UsersContainer from "../containers/UsersContainer";
 import UserSelectedContainer from "../containers/UserSelectedContainer";
 import AccessMobileContainer from "../containers/AccessMobileContainer";
 import { persistencia } from "../store/actions/login";
+import firebase from 'firebase';
+
+const firebaseConfig = {
+  apiKey: 'AIzaSyB9aTo2M8MfYlJNBqKGdvZpVmVhCYryYQE',
+  authDomain: 'sd-movie-finder.firebaseapp.com',
+  databaseURL: 'https://sd-movie-finder.firebaseio.com',
+  projectId: 'sd-movie-finder',
+  storageBucket: 'sd-movie-finder.appspot.com',
+  messagingSenderId: '570906021537',
+  appId: '1:570906021537:web:28f775f31cf651309b6ae0',
+  measurementId: 'G-N0DPVFMMN4'
+};
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
+firebase.analytics();
 
 const mapDispatchToProps = function (dispatch) {
   return {

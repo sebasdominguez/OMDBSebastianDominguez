@@ -1,6 +1,8 @@
 import React from "react";
 import ParallaxCard from "react-parallax-card";
 import { Link } from "react-router-dom";
+import img2 from './img/onePop.png';
+import Sky from 'react-sky';
 
 export default ({ user, movies, byTitle }) => {
   return (
@@ -60,6 +62,12 @@ export default ({ user, movies, byTitle }) => {
           </div>
         </div>
       </div>
+      <Sky
+        images={{ 0: img2 }}
+        how={100} /* Pass the number of images Sky will render chosing randomly */
+        time={40} /* time of animation */
+        size={'65px'} /* size of the rendered images */
+        />
     </div>
   );
 };

@@ -45,3 +45,10 @@ Con la App podemos:
 * Abrí el browser en http://localhost:3000/
 
 
+### Consideraciones Final
+
+* Estilo: si bien no es de mi total agrado utilizar react-bootstrap, para proyectos sin participación de expertos en ux/ui/desing, es decir de libre diseño a cargo del desarrollador, creo que es una salida viable. Caso contrario, hubiese implementado styled-components para trabajar una réplica exacta de un diseño a perseguir.
+
+* Componentes Funcionales vs. Componentes de Clase: existe un mix de ambos, simplemente para dejar registradas ambas posibilidades. Pude haber escito todo el código con los componentes funcionales y sus hooks respectivos.
+
+

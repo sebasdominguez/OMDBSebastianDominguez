@@ -35,5 +35,7 @@ export const logOut = () => (dispatch) => {
 };
 
 export const persistencia = () => (dispatch) => {
-  axios.get("/api/persist").then((res) => dispatch(login(res.data)));
+  axios.get("/api/persist")
+  .then((res) => dispatch(login(res.data)))
+  .catch((err)=>console.log(err))
 };
