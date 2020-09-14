@@ -31,6 +31,7 @@
     "react-parallax-card": "^0.5.7",
     "react-redux": "^5.1.1",
     "react-router-dom": "^4.3.1",
+    "react-scripts": "^3.4.3",
     "react-sky": "^1.1.0",
     "redux": "^3.7.2",
     "redux-form": "^8.3.6",
@@ -44,6 +45,7 @@
     "@babel/preset-react": "^7.0.0",
     "babel-loader": "^8.0.5",
     "css-loader": "^3.6.0",
+    "dotenv-webpack": "^2.0.0",
     "style-loader": "^1.2.1",
     "webpack": "^4.29.3",
     "webpack-cli": "^3.2.3"

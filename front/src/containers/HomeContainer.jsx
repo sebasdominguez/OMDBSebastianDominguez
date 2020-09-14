@@ -4,7 +4,7 @@ import { withRouter } from "react-router-dom";
 import Home from "../components/Home";
 import { fetchPeliByTitle } from "../store/actions/movies";
 import axios from "axios";
-import { apiKey } from "../utils/utils.js";
+const apiKey = process.env.API_KEY;
 
 const mapStateToProps = function (state) {
   return {

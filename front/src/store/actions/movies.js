@@ -1,6 +1,6 @@
 import axios from "axios";
 import { RECEIVE_MOVIES, RECEIVE_MOVIE, MOVIES_HOME } from "../constants";
-import { apiKey } from "../../utils/utils.js";
+const apiKey = process.env.API_KEY;
 
 const receiveMovies = (movies) => ({
   type: RECEIVE_MOVIES,
