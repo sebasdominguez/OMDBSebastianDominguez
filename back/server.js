@@ -4,11 +4,9 @@ const volleyball = require("volleyball")
 const bodyParcer = require("body-parser")
 const db = require("./config/db")
 const User = require('./models/User');
-const Favorites = require('./models/Favorites');
 const routes = require("./routes/index.js")
 const path = require("path")
 const session = require('express-session'); // req.session || https://www.tutorialspoint.com/expressjs/expressjs_sessions.htm
-const cookieParser = require('cookie-parser'); // req.cookies
 const LocalStrategy = require('passport-local').Strategy
 const passport = require('passport');
 
@@ -17,7 +15,6 @@ app.use(express.static(path.join(__dirname, "/public")))
 
 app.use(bodyParcer.urlencoded({ extended: true }))
 app.use(bodyParcer.json())
-
 
 // express-session init
 app.use(session({ secret: "sdomdb" })) // req.session // The secret is used to sign the session id cookie, to prevent the cookie to be tampered with.
