@@ -33,16 +33,17 @@ Con la App podemos:
 
 * React-Bootstrap
 
-* Firebase
+* Docker
 
 
 ### Start Point
 
 * Forkeá y cloná este repo.
 * Abrí 2 pestañas en la Terminal.
-* Sobre 1 de ellas, posicionate sobre el directorio `front` y ejecutá `npm run build`.
-* Con la otra pestaá, posicionado sobre el `back` ejecutá `npm start`
-* Abrí el browser en http://localhost:3000/
+* Para simplificar el proceso, se encuentra Dockerizado.
+* Asegurate de tener Docker corriendo en tu ordenador y en la terminar posicionado sobre el root, ejecuta `docker-compose build`. Vé por un café y volvé en 5 minutos...
+* Finalizado el paso anterior, ejecutá `docker-compose up`.
+* La app te espera en el browser: http://localhost:3000/
 
 
 ### Consideraciones Final

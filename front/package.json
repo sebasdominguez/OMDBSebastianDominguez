@@ -3,9 +3,9 @@
   "description": "movies info front end site",
   "main": "src/index.js",
   "scripts": {
-    "build": "webpack -w",
-    "serve": "webpack-dev-server --content-base-build/ --colors --progress",
-    "start": "npm run build && npm run serve"
+    "start": "node server",
+    "dev": "webpack -w & node server",
+    "build": "webpack"
   },
   "repository": {
     "type": "git",
